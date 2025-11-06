@@ -1,22 +1,22 @@
 package com.example.demo;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HpPrinter implements Printer {
 
+    @Value("${printer.count}")
     private int count;
 
-    @PostConstruct
-    public void init() {
-        count = 5;
-    }
+    @Value("${printer.name}")
+    private String name;
 
     @Override
     public void print(String message) {
         count--;
-        System.out.println("HP Printer: " + message);
+        System.out.println(name + ": " + message);
         System.out.println("HP Printer count: " + count);
     }
 }
