@@ -1,19 +1,29 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@RequestMapping("detail")
 @RestController
 public class MyController {
 
-    @Autowired
-    private Printer printer;
+    @RequestMapping("/product")
+    public Store product() {
+        Store store = new Store();
+        List<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        store.setProductList(list);
+        return store;
+    }
 
-    @RequestMapping("/test")
-    public String test() {
-        printer.print("Hello World");
-        return "Hello World";
+    @RequestMapping("user")
+    public Student user() {
+        Student student = new Student();
+        student.setName("Judy");
+        return student;
     }
 }
