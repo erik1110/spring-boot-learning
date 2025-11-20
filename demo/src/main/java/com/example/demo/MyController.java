@@ -1,7 +1,6 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,33 @@ import java.util.List;
 @RestController
 public class MyController {
 
-    @RequestMapping("/product")
+    @RequestMapping("/test1")
+    public String test1(@RequestParam  Integer id,
+                        @RequestParam(required = false) String name) {
+        System.out.println("id: " + id);
+        System.out.println("name: " + name);
+        return id + name;
+    }
+
+    @RequestMapping("/test2")
+    public String test2(@RequestBody Student student) {
+        return student.getId() + " " + student.getName();
+    }
+
+    @RequestMapping("/test3")
+    public String test3(@RequestHeader(name="Content-Type") String contentType) {
+        return contentType;
+    }
+
+    @RequestMapping("/test4/{id}/{name}")
+    public String test4(@PathVariable Integer id,
+                         @PathVariable String name) {
+        return id + " " + name;
+    }
+
+
+
+    @PostMapping("/product")
     public Store product() {
         Store store = new Store();
         List<String> list = new ArrayList<>();
@@ -20,7 +45,7 @@ public class MyController {
         return store;
     }
 
-    @RequestMapping("user")
+    @PostMapping("user")
     public Student user() {
         Student student = new Student();
         student.setName("Judy");
