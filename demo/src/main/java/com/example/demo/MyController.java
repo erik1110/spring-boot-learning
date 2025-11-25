@@ -50,8 +50,12 @@ public class MyController {
     public String test7() {
         throw new IllegalArgumentException("test7 error");
     }
-    
 
+    @RequestMapping("/test8")
+    public String test8() {
+        System.out.println("test8");
+        return "Hello World";
+    }
     @PostMapping("/product")
     public Store product() {
         Store store = new Store();
