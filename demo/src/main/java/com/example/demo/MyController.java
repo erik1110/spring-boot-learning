@@ -41,6 +41,17 @@ public class MyController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Hello World");
     }
 
+    @RequestMapping("/test6")
+    public String test6() {
+        throw new RuntimeException("test6 error");
+    }
+
+    @RequestMapping("/test7")
+    public String test7() {
+        throw new IllegalArgumentException("test7 error");
+    }
+    
+
     @PostMapping("/product")
     public Store product() {
         Store store = new Store();
